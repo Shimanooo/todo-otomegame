@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>todoアプリ</title>
+  <link rel="stylesheet" href="/assets/stylesheets/style.css">
+
+</head>
+
+<body>
+
+<div id ="new">
+  <div class="container">
+
+     <div id="header">
+        <nav>
+          <h1>Todo</h1>
+          <ul>
+            <li><a href="/top">ログアウト</a></li>
+            <li><a href="">ボイス集</a></li>
+          </ul>
+        </nav>
+      </div>
+
+    <div class="add-form">
+      <form action="/tasks" method="post">
+        <div class="controls">
+          <div class="add-task-group">
+            <table>
+              <tbody>
+              <tr>
+                <td class="text"><p>タスク</p></td>
+                <td class="form"><input type="text" name="title" class="form-control imput-lg"></td>
+              </tr>
+              <tr>
+                <td class="text"><p>締切</p></td>
+                <td class="form"><input type="text" name="due_date" class="form-control imput-lg"></td>
+              </tr>
+              <tr>
+                <td class="text"><p>リスト :</p></td>
+                <td class="form">
+                  <select name="list" class="form-control">
+                    <% List.all.each do |list| %>
+                      <option value="<%= list.id %>"><%=list.name%></option>
+                    <% end %>
+                  </select>
+                </td>
+
+              </tbody>
+            </table>
+          </div>
+          <div class="form-button">
+            <input class="form-add-button" type="submit" value="登録">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
