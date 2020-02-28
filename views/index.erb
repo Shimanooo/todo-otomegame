@@ -16,6 +16,13 @@
 				<ul>
 					<li><a href="/top">ログアウト</a></li>
 					<%# <li><a href="">ボイス集</a></li> %>
+					<li>
+						 <a>
+            <% if !current_user.nil? %>
+              <li class="login-account">こんにちは、<%= current_user.name %>さん</li>
+            <% end %>
+          </a>
+       	 	</li>
 				</ul>
 			</nav>
 		</div>
@@ -24,23 +31,12 @@
 			<div class="sidebar-contents">
 				<ul class="list-group">
 					<%= erb :_count_due, locals: {title: "トップ", url: "/", tasks: Task.all} %>
-					<%# <%= erb :_count_due, locals: {title: "今日", url: "/", tasks: Task.all} %> %>
-					<%# <%= erb :_count_due, locals: {title: "締切近い", url: "/", tasks: Task.all} %> %>
-					<%# <%= erb :_count_due, locals: {title: "締切過ぎた", url: "/tasks/over", tasks: Task.all} %> %>
-
-					<% unless task.completed %>
-						<% if task.remained_days < 0 %>
-							締切過ぎた
-						<% elseif task.remained_days == 0%>
-							今日締切
-						<% elseif task.remained_days < 7 %>
-							締切近い
-						<% end %>
-					<% end %>
-
-					<li class="list-group-item"><a href="/tasks/done">Done</a></li>
+					<%= erb :_count_due, locals: {title: "今日", url: "/", tasks: Task.all} %>
+					<%= erb :_count_due, locals: {title: "締切近い", url: "/", tasks: Task.all} %>
+					<%= erb :_count_due, locals: {title: "締切過ぎた", url: "/tasks/over", tasks: Task.all} %>
+					<%# <li class="list-group-item"><a href="/tasks/done">Done</a></li> %>
 					<% @lists.each do |list| %>
-						<%= erb :_count_due,locals: {title: list.name, url: "/?list=#{list.id}", tasks: list.tasks} %>
+						<%= erb :_count_due, locals: {title: list.name, url: "/?list=#{list.id}", tasks: list.tasks} %>
 					<% end %>
 				</ul>
 			</div>
@@ -48,18 +44,8 @@
 
 		<div id="main">
 			<div class="main-contents">
-
-			 <li>
-          <a>
-            <% if !current_user.nil? %>
-              <li>こんにちは、<%= current_user.name %>さん</li>
-            <% else %>
-              <li>新規ユーザーですか？</li>
-            <% end %>
-          </a>
-        </li>
-
-			<a class="add-bottun" href="/tasks/new">新しいタスクを追加</a>
+					<a class="add-bottun" href="/tasks/new">新しいタスクを追加</a>
+					<input id="button" type="submit" value="応援">
 					<table class="list">
 						<thead>
 							<tr>
@@ -80,7 +66,7 @@
 									<td>
 										<% unless  task.completed %>
 											<form action="/tasks/<%= task.id %>/done" method="post">
-												<input type="submit" value="Done!">
+												<input id="Done" type="submit" value="Done!">
 											</form>
 										<% else %>
 											Done!
@@ -121,8 +107,6 @@
 							<%# <tr><td colspan="6"><a href="/tasks/new">新しいタスクを追加</a></td></tr> %>
 						</tbody>
 					</table>
-
-					<input id="button" type="submit" value="応援">
 			</div>
 		</div>
 	</div>
@@ -143,6 +127,37 @@
 		];
 
 	var playAudio = function () {
+		var audio = new Audio(),
+			num = Math.floor(Math.random() * audioArr.length);
+
+		if (num == audioArr.length) {
+			num = audioArr.length - 1;
+		}
+		audio.src = audioArr[num];
+		audio.play();
+	}
+
+	button.addEventListener('click', function () {
+		playAudio();
+	}, false);
+</script>
+
+<script>
+var button = document.getElementById('Done'),
+		audioArr = [
+			'assets/voice/apple/fight_1.mp3',
+			'assets/voice/apple/fight_2.mp3',
+			'assets/voice/apple/fight_free.mp3',
+			'assets/voice/misako/fight_1.mp3',
+			'assets/voice/misako/fight_2.mp3',
+			'assets/voice/misako/fight_3.mp3',
+			'assets/voice/misako/fight_4.mp3',
+			'assets/voice/misako/fight_5.mp3',
+			'assets/voice/razona/fight_1.mp3',
+			'assets/voice/razona/fight_2.mp3',
+		];
+
+		var playAudio = function () {
 		var audio = new Audio(),
 			num = Math.floor(Math.random() * audioArr.length);
 

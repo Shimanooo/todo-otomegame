@@ -198,17 +198,23 @@ background: linear-gradient(135deg, rgba(242,197,210,1) 0%, rgba(242,197,210,1) 
 }
 
 #button {
-  width: 150px;
   text-align: center;
   background-color: #D94562;
   color: #ffffff;
-  padding: 20px 0px;
-  margin-top: 20px;
-  border-radius: 40px;
-  font-size: 25px;
+  padding: 20px 120px;
+  border-radius: 46px;
+  font-size: 30px;
+  float: right;
 }
 
+li {
+  list-style: none;
+}
 
+.login-account {
+  padding-bottom: 75px;
+  font-size: 25px;
+}
 
 .main-contents a {
   color: #707070;
@@ -219,11 +225,10 @@ background: linear-gradient(135deg, rgba(242,197,210,1) 0%, rgba(242,197,210,1) 
   height: 83px;
   background-color: #ffffff;
   text-align: center;
-  padding: 26px 193px;
+  padding: 26px 250px;
   font-size: 30px;
   border-radius: 46px;
   border: 1px solid #707070;
-  margin: 240px;
 }
 
 .main-contents .add-bottun a {
@@ -232,6 +237,10 @@ background: linear-gradient(135deg, rgba(242,197,210,1) 0%, rgba(242,197,210,1) 
 
 a {
   text-decoration: none;
+}
+
+.main-contents td {
+  text-align: center;
 }
 
 .list {
