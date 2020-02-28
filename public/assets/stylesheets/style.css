@@ -197,14 +197,15 @@ background: linear-gradient(135deg, rgba(242,197,210,1) 0%, rgba(242,197,210,1) 
   width: 1150px;
 }
 
-.main_contents a .fight {
-  width: 100px;
+#button {
+  width: 150px;
   text-align: center;
   background-color: #D94562;
   color: #ffffff;
   padding: 20px 0px;
   margin-top: 20px;
-  border-radius: 30px;
+  border-radius: 40px;
+  font-size: 25px;
 }
 
 

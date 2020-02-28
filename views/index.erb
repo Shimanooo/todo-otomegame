@@ -24,9 +24,20 @@
 			<div class="sidebar-contents">
 				<ul class="list-group">
 					<%= erb :_count_due, locals: {title: "トップ", url: "/", tasks: Task.all} %>
-					<%= erb :_count_due, locals: {title: "今日", url: "/", tasks: Task.all} %>
-					<%= erb :_count_due, locals: {title: "締切近い", url: "/", tasks: Task.all} %>
-					<%= erb :_count_due, locals: {title: "締切過ぎた", url: "/tasks/over", tasks: Task.all} %>
+					<%# <%= erb :_count_due, locals: {title: "今日", url: "/", tasks: Task.all} %> %>
+					<%# <%= erb :_count_due, locals: {title: "締切近い", url: "/", tasks: Task.all} %> %>
+					<%# <%= erb :_count_due, locals: {title: "締切過ぎた", url: "/tasks/over", tasks: Task.all} %> %>
+
+					<% unless task.completed %>
+						<% if task.remained_days < 0 %>
+							締切過ぎた
+						<% elseif task.remained_days == 0%>
+							今日締切
+						<% elseif task.remained_days < 7 %>
+							締切近い
+						<% end %>
+					<% end %>
+
 					<li class="list-group-item"><a href="/tasks/done">Done</a></li>
 					<% @lists.each do |list| %>
 						<%= erb :_count_due,locals: {title: list.name, url: "/?list=#{list.id}", tasks: list.tasks} %>
@@ -37,8 +48,19 @@
 
 		<div id="main">
 			<div class="main-contents">
+
+			 <li>
+          <a>
+            <% if !current_user.nil? %>
+              <li>こんにちは、<%= current_user.name %>さん</li>
+            <% else %>
+              <li>新規ユーザーですか？</li>
+            <% end %>
+          </a>
+        </li>
+
 			<a class="add-bottun" href="/tasks/new">新しいタスクを追加</a>
-					<table class="list"">
+					<table class="list">
 						<thead>
 							<tr>
 								<th class="task">タスク</th>
@@ -111,6 +133,13 @@
 			'assets/voice/apple/fight_1.mp3',
 			'assets/voice/apple/fight_2.mp3',
 			'assets/voice/apple/fight_free.mp3',
+			'assets/voice/misako/fight_1.mp3',
+			'assets/voice/misako/fight_2.mp3',
+			'assets/voice/misako/fight_3.mp3',
+			'assets/voice/misako/fight_4.mp3',
+			'assets/voice/misako/fight_5.mp3',
+			'assets/voice/razona/fight_1.mp3',
+			'assets/voice/razona/fight_2.mp3',
 		];
 
 	var playAudio = function () {
@@ -128,4 +157,7 @@
 		playAudio();
 	}, false);
 </script>
+
+<%# <%= yield %>
 </body>
+</html>

@@ -19,6 +19,18 @@ before '/tasks' do
   end
 end
 
+# get '/' do
+#   @lists = List.all
+#   if current_user.nil?
+#     @tasks = Task.none
+#   elsif params[:list].nil? then
+#     @tasks = current_user.tasks
+#   else
+#     @tasks = List.find(params[:list]).tasks.had_by(current_user)
+#   end
+#   erb :index
+# end
+
 get '/' do
   @lists = List.all
   if current_user.nil?
@@ -31,10 +43,6 @@ get '/' do
   erb :index
 end
 
-get '/top' do
-  erb :top
-end
-
 get '/sign_in' do
   erb :sign_in
 end
@@ -43,26 +51,25 @@ get '/sign_up' do
   erb :sign_up
 end
 
-get '/' do
+get '/index' do
   erb :index
 end
 
-post '/signup' do
+get '/top' do
+  erb :top
+end
 
+post '/signup' do
   user = User.create(
     name: params[:name],
     password: params[:password],
     password_confirmation: params[:password_confirmation]
     )
-  binding.pry
+  # binding.pry
   if user.persisted?
     session[:user] = user.id
   end
-  redirect '/'
-end
-
-get '/signin' do
-  erb :sign_in
+  redirect '/index'
 end
 
 post '/signin' do
@@ -70,12 +77,12 @@ post '/signin' do
   if user && user.authenticate(params[:password])
       session[:user] = user.id
   end
-  redirect '/'
+  redirect '/index'
 end
 
 get '/signout' do
   session[:user] = nil
-  redirect '/'
+  redirect '/top'
 end
 
 get '/tasks/new' do
