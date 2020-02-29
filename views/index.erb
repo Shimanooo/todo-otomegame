@@ -44,8 +44,10 @@
 
 		<div id="main">
 			<div class="main-contents">
+			<div class="button">
 					<a class="add-bottun" href="/tasks/new">新しいタスクを追加</a>
 					<input id="button" type="submit" value="応援">
+			</div>
 					<table class="list">
 						<thead>
 							<tr>
@@ -92,11 +94,11 @@
 									<td>
 										<a href="/tasks/<%= task.id %>/star" style="
 											<% if task.star %>
-												background-color:red;
+												background-color:#D94562;
 											<% else %>
 												background-color:white;
 											<% end %>
-												border: 1px solid black;
+												border: 1px solid gray;
 												border-radius: 50px;
 												width: 13px;
 												height: 13px;
@@ -154,15 +156,13 @@
 var button = document.getElementById('Done'),
 		audioArr = [
 			'assets/voice/apple/finish_1.mp3',
-			'assets/voice/apple/fight_2.mp3',
-			'assets/voice/apple/fight_free.mp3',
-			'assets/voice/misako/fight_1.mp3',
-			'assets/voice/misako/fight_2.mp3',
-			'assets/voice/misako/fight_3.mp3',
-			'assets/voice/misako/fight_4.mp3',
-			'assets/voice/misako/fight_5.mp3',
-			'assets/voice/razona/fight_1.mp3',
-			'assets/voice/razona/fight_2.mp3',
+			'assets/voice/apple/finish_2.mp3',
+			'assets/voice/apple/finish_3.mp3',
+			'assets/voice/razona/finish_1.mp3',
+			'assets/voice/razona/finish_2.mp3',
+			'assets/voice/razona/finish_2.mp3',
+			'assets/voice/pontsuyo/finish_1.mp3',
+			'assets/voice/pontsuyo/finish_2.mp3',
 		];
 
 		var playAudio = function () {

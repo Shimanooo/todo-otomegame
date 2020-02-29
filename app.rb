@@ -56,7 +56,7 @@ get '/top' do
   erb :top
 end
 
-post '/signup' do
+post '/sign_up' do
   user = User.create(
     name: params[:name],
     password: params[:password],
@@ -69,7 +69,7 @@ post '/signup' do
   redirect '/'
 end
 
-post '/signin' do
+post '/sign_in' do
   user = User.find_by(name: params[:name])
   if user && user.authenticate(params[:password])
       session[:user] = user.id
@@ -99,9 +99,11 @@ post '/tasks' do
 end
 
 post '/tasks/:id/done' do
+
   task = Task.find(params[:id])
   task.completed = true
   task.save
+  sleep 4
   redirect '/'
 end
 

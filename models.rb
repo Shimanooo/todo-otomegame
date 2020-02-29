@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password,
     length: { in: 5..10 }
+  validates :name, presence: true
   has_many :tasks
 end
 

@@ -245,7 +245,7 @@ a {
 
 .list {
   width: 1250px;
-  height: 745px;
+  /* height: 745px; */
   background: #ffffff;
   margin-top: 85px;
   border-radius: 25px;
@@ -308,4 +308,5 @@ a {
 
 #main td {
   font-size: 20px;
+  padding-bottom: 20px;
 }
