@@ -13,23 +13,20 @@ helpers do
   end
 end
 
+before do
+  if session[:user].nil?
+    unless request.path == "/sign_in" || request.path == "/sign_up"
+      redirect '/sign_up'
+    end
+  end
+end
+
+
 before '/tasks' do
   if current_user.nil?
     redirect '/'
   end
 end
-
-# get '/' do
-#   @lists = List.all
-#   if current_user.nil?
-#     @tasks = Task.none
-#   elsif params[:list].nil? then
-#     @tasks = current_user.tasks
-#   else
-#     @tasks = List.find(params[:list]).tasks.had_by(current_user)
-#   end
-#   erb :index
-# end
 
 get '/' do
   @lists = List.all
@@ -69,7 +66,7 @@ post '/signup' do
   if user.persisted?
     session[:user] = user.id
   end
-  redirect '/index'
+  redirect '/'
 end
 
 post '/signin' do
@@ -77,7 +74,7 @@ post '/signin' do
   if user && user.authenticate(params[:password])
       session[:user] = user.id
   end
-  redirect '/index'
+  redirect '/'
 end
 
 get '/signout' do

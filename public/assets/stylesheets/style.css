@@ -192,9 +192,9 @@ background: linear-gradient(135deg, rgba(242,197,210,1) 0%, rgba(242,197,210,1) 
 }
 
 .main-contents {
-  margin-left: 661px;
+  margin-left: 615px;
   padding-top: 186px;
-  width: 1150px;
+  width: 1250px;
 }
 
 #button {
@@ -244,8 +244,8 @@ a {
 }
 
 .list {
-  width: 1150px;
-  height: 545px;
+  width: 1250px;
+  height: 745px;
   background: #ffffff;
   margin-top: 85px;
   border-radius: 25px;
@@ -297,12 +297,15 @@ a {
 .form-add-button {
   width: 579px;
   height: 95px;
-  border: 1px solid #707070;
   border-radius: 52px;
-  background-color: #ffffff;
+  background-color: #D94562;
   text-align: center;
   margin-top: 100px;
   margin: 70px 170px;
-  color: #707070;
+  color: #ffffff;
   font-size: 35px;
+}
+
+#main td {
+  font-size: 20px;
 }
